@@ -1,0 +1,3 @@
+public class NombresArchivo {
+    final static String archivoTareas = "tareas.txt"
+}
