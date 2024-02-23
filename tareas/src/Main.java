@@ -17,18 +17,19 @@ public class Main {
         boolean ejecutando = true;
 
         while (ejecutando) {
-        	System.out.println("---------------------------------------------");
+            System.out.println("---------------------------------------------");
             System.out.println("                    Menú:                    |");
             System.out.println("1. Agregar nueva tarea                       |");
             System.out.println("2. Marcar tarea como completada              |");
             System.out.println("3. Eliminar tarea                            |");
             System.out.println("4. Generar reporte de tareas en curso        |");
             System.out.println("5. Generar reporte de tareas completadas     |");
-            System.out.println("6. Salir                                     |");
-        	System.out.println("---------------------------------------------|");
+            System.out.println("6. Generar reporte de tareas ingresadas      |");
+            System.out.println("7. Salir                                     |");
+            System.out.println("---------------------------------------------|");
             System.out.print("Seleccione una opción:   ");
             int opcion = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -55,29 +56,40 @@ public class Main {
                     gestor.generarReporte("completadas", "reporte_completadas.txt");
                     break;
                 case 6:
+                    System.out.println("La lista de tareas general es: ");
+                    gestor.reportTarea();
+                    break;
+                case 7:
                     ejecutando = false;
                     break;
                 default:
                     System.out.println("Opción inválida");
             }
         }
-        
+
         guardarTareas(archivoTareas, gestor.getTareas());
 
         scanner.close();
     }
-    
-    
+
     public static ArrayList<Tarea> cargarTareas(String archivo) {
         ArrayList<Tarea> tareas = new ArrayList<>();
         try {
             File file = new File(archivo);
-            if (file.exists()) {
+            if (!file.exists()) {
+                    if (file.createNewFile()) {
+                        System.out.println("Archivo creado exitosamente.");
+                    } else {
+                        System.out.println("Error al crear el archivo.");
+                    }
+                    return tareas;
+                }
+
                 FileInputStream fis = new FileInputStream(file);
                 InputStreamReader isr = new InputStreamReader(fis);
                 BufferedReader br = new BufferedReader(isr);
                 String linea;
-                while ((linea = br.readLine()) != null){
+                while ((linea = br.readLine()) != null) {
                     String[] datos = linea.split(";");
                     String descripcion = datos[0];
                     boolean completada = Boolean.parseBoolean(datos[1]);
@@ -88,15 +100,12 @@ public class Main {
                     tareas.add(tarea);
                 }
                 br.close();
-            } else {
-                System.out.println("El archivo no existe");
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return tareas;
     }
-    
+
     public static void guardarTareas(String archivo, ArrayList<Tarea> tareas) {
         try (FileWriter writer = new FileWriter(archivo)) {
             for (Tarea tarea : tareas) {
@@ -107,6 +116,5 @@ public class Main {
             System.out.println("Error al guardar las tareas: " + e.getMessage());
         }
     }
-    
 
 }
