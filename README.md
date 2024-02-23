@@ -1,6 +1,7 @@
 ## _Organizador de Tareas_
 - Enunciado: Organizador de tareas que permite a los usuarios añadir, eliminar y marcar como completadas las tareas, las cuales se almacenan en archivos de texto. Se tiene un archivo de texto para las tareas en general, uno para el registro de las tareas completadas y un tercero para las tareas pendientes. Las tareas eliminadas también se eliminan del archivo de texto.
+Los archvos de texto antes descritos se crean al momento que el usuario va interactuando con el programa.
 - Planificacion: se trabajará de forma remota, como equipo dividimos el trabajo en 4 dias, se realizarán las funcionalidades en 3 días y el día 4 se verá de solucionar cualquier inconveniente encontrado.
 - Diseño: Será una aplicación que se desplega por consola, el usuario puede interactuar con ella mediante un menú de opciones, y para ver los archivos de texto los crea automáticamente el programa.
-- Ramas: Contamos con la rama Master y la Rama de PantallaPrincipal, la cual contiene las funcionalidades del programa.
+- Ramas: Contamos con la rama main y la feature/estructura, la cual contiene parte inicial de código del programa.
 - Funciones: El usuario puede añadir tareas, eliminarlas, desplegar un listado de todas las tareas ingresadas para verlo mediante consola, además ni bien se inicializa el programa se generea un archivo de texto de las tareas ingresadas para mantenerlas almacenadas, puede marcar como completadas las tareas y generar informes de tareas completadas e informe de tareas pendientes, los cuales se almacenan en otros dos archivos de texto respectivamente.
